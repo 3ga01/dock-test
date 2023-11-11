@@ -1,0 +1,29 @@
+name: Build and Run Docker Container
+
+on:
+  push:
+    branches:
+      - master # change this to your branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Docker
+      uses: docker/setup-docker@v2
+      with:
+        dockerfile: Dockerfile # specify the path to your Dockerfile
+
+    - name: Build and Push Docker Image
+      run: |
+        docker build -t myapp3 .
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker push myapp3
+
+    - name: Run Docker Container
+      run: |
+        docker run -d --name java1 -p 8080:8080 myapp3
