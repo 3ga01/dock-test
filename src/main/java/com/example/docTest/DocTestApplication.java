@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DocTestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DocTestApplication.class, args);
-		
+		SpringApplication.run(DocTestApplication.class, args)
+
 	}
 
 }
